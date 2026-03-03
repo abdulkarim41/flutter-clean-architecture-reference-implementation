@@ -3,6 +3,7 @@ name: flutter_clean_architecture_reference_implementation
 workspace:
   - app/
   - core/data/
+  - core/domain/
 
 environment:
   sdk: ^3.10.4
