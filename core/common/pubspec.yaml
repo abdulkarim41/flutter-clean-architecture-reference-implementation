@@ -25,6 +25,9 @@ dependencies:
 
   logger: ^2.6.1
   flutter_secure_storage: ^9.2.4
+  shared_preferences: ^2.5.3
+  get_it: ^8.0.3
+  fluttertoast: ^8.2.12
 
 
 dev_dependencies:
