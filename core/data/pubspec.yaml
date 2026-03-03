@@ -23,7 +23,13 @@ dependencies:
   flutter:
     sdk: flutter
 
+  common: ^0.0.1
+  apiresponse: ^0.0.1
+  entity: ^0.0.1
+  domain: ^0.0.1
+
   http: ^1.6.0
+  get_it: ^8.0.3
 
 
 dev_dependencies:

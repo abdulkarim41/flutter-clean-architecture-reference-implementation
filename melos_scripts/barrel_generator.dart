@@ -10,6 +10,7 @@ void main() {
     'entity': 'model/entity',
     'domain': 'core/domain',
     'common': 'core/common',
+    'data': 'core/data',
   }
   ..forEach((name, relativePath) {
     final libDir = Directory(path.join(Directory.current.path, relativePath, 'lib'));

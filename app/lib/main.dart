@@ -1,8 +1,14 @@
+import 'package:data/data.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:domain/domain.dart' as domain;
+import 'package:common/common.dart' as common;
+import 'package:common/common.dart';
+import 'package:domain/domain.dart';
 
-void main() {
+Future<void> main() async {
   runApp(const MyApp());
 }
 
@@ -33,43 +39,60 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  late Future<List<dynamic>> productsFuture;
+  bool _isLoading = false;
 
-  @override
-  void initState() {
-    super.initState();
-    productsFuture = ProductService().getProducts();
+  final PostLoginApiUsecase _loginUsecase =
+  GetIt.I<PostLoginApiUsecase>();
+
+  Future<void> _onLoginClicked() async {
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    final params = LoginApiParams(
+      username: "",
+      password: "",
+    );
+
+    final result = await _loginUsecase.invoke(params);
+
+    setState(() {
+      _isLoading = false;
+    });
+
+    result.when(
+      success: (data) {
+        print("Login Success: ${data.accessToken}");
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Login Success")),
+        );
+      },
+      failure: (error) {
+        print("Login Failed: $error");
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Login Failed")),
+        );
+      },
+    );
   }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Products")),
-      body: FutureBuilder<List<dynamic>>(
-        future: productsFuture,
-        builder: (context, snapshot) {
-
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
-
-          if (snapshot.hasError) {
-            return Center(child: Text("Error: ${snapshot.error}"));
-          }
-
-          final products = snapshot.data!;
-
-          return ListView.builder(
-            itemCount: products.length,
-            itemBuilder: (context, index) {
-              final product = products[index];
-              return ListTile(
-                title: Text(product["title"]),
-                subtitle: Text("\$${product["price"]}"),
-              );
-            },
-          );
-        },
+      body: Column(
+        children: [
+          _isLoading
+              ? const CircularProgressIndicator()
+              : ElevatedButton(
+            onPressed: _onLoginClicked,
+            child: const Text("Login"),
+          ),
+        ],
       ),
     );
   }
