@@ -6,9 +6,10 @@ import 'package:path/path.dart' as path;
 void main() {
   // Define your package paths (relative to project root)
   final _ = {
-    'api_response': 'model/apiresponse',
+    'apiresponse': 'model/apiresponse',
     'entity': 'model/entity',
     'domain': 'core/domain',
+    'common': 'core/common',
   }
   ..forEach((name, relativePath) {
     final libDir = Directory(path.join(Directory.current.path, relativePath, 'lib'));

@@ -14,6 +14,7 @@ dependencies:
   common: ^0.0.1
   data: ^0.0.1
   domain: ^0.0.1
+  entity: ^0.0.1
   cupertino_icons: ^1.0.8
 
 dev_dependencies:
