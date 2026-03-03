@@ -2,6 +2,7 @@ name: flutter_clean_architecture_reference_implementation
 
 workspace:
   - app/
+  - core/common/
   - core/data/
   - core/domain/
 
