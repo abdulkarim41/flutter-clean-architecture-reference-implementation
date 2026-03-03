@@ -199,8 +199,8 @@ desktop.ini
 local.properties
 keystore.properties
 .env
-#.env_development
-#.env_production
+.env_development
+.env_production
 /app/lib/localization/generated/
 /devtools_options.yaml
 /mason-lock.json

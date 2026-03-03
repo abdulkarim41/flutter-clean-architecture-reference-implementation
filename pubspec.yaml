@@ -7,6 +7,7 @@ workspace:
   - core/domain/
   - model/apiresponse/
   - model/entity/
+  - tooling/secret_env/
 
 environment:
   sdk: ^3.10.4
@@ -28,6 +29,7 @@ melos:
         shared_preferences: ^2.5.3
         get_it: ^8.0.3
         fluttertoast: ^8.2.12
+        envied: ^1.2.0
 
       dev_dependencies:
         flutter_test:
