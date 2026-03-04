@@ -19,7 +19,7 @@ class SplashScreen extends StatelessWidget {
           if (state == SplashStatus.authenticated) {
             FlutterToast.toast(message: 'navigate to home');
           } else if (state == SplashStatus.unauthenticated) {
-            context.pushReplacement(AppRoutesName.loginScreen);
+            context.pushReplacement(AppRoutesName.onboardingScreen);
           }
         },
         child: const Scaffold(

@@ -10,6 +10,7 @@ workspace:
   - model/entity/
   - tooling/secret_env/
   - features/entry/splash/
+  - features/entry/onboarding/
   - features/auth/login/
 
 environment:

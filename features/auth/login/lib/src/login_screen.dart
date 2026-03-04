@@ -137,6 +137,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: 55,
                             width: double.infinity,
                             child: FilledButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
                               onPressed: state.isLoading
                                   ? null
                                   : () {
@@ -156,6 +161,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                       ),
                   ),
+
+
 
                   const SizedBox(height: 30),
 
