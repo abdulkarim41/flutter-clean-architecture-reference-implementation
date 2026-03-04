@@ -168,7 +168,7 @@ final class NetworkClient {
 
   Future<dynamic> _handleTokenRefresh(Future<http.Response> Function() request) async {
     try{
-      final response = await get(endpoint: 'v1/refresh-token');
+      final response = await get(endpoint: 'auth/refresh');
       final newToken = response['token'] as String?;
       await _secureStorage.set(key: SpKey.accessToken, value: newToken);
 

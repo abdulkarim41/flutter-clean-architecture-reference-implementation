@@ -1,6 +1,7 @@
 import 'package:envied/envied.dart';
 import 'package:secret_env/src/env/app_env.dart';
-import 'package:secret_env/src/env/env_fields.dart';
+import 'env_fields.dart';
+
 part 'development_env.g.dart';
 
 @Envied(name: 'Env', path: '.env_development')

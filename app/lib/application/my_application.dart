@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 
+import '../router/app_navigation.dart';
+
 class MyApplication extends StatefulWidget {
   const MyApplication({super.key});
 
@@ -9,7 +11,6 @@ class MyApplication extends StatefulWidget {
 }
 
 class _MyApplicationState extends State<MyApplication> {
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -17,36 +18,12 @@ class _MyApplicationState extends State<MyApplication> {
         return SafeArea(
           top: false,
           bottom: Platform.isAndroid,
-          child: MaterialApp(
-            title: 'Flutter Demo',
-            theme: ThemeData(
-              colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-            ),
-            home: const MyHomePage(title: 'Flutter Demo Home Page'),
+          child: MaterialApp.router(
+            routerConfig: AppRouter.router,
+            debugShowCheckedModeBanner: false,
           ),
         );
       },
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text('Home Screen'),
-      ),
     );
   }
 }
