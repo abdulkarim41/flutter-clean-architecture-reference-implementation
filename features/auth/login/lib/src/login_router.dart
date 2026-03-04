@@ -2,21 +2,18 @@ import 'package:domain/domain.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:navigation/navigation.dart';
 import 'bloc/login_cubit.dart';
 import 'login_screen.dart';
 
-class LoginRouter {
+class LoginRouter implements BaseRouter {
 
-  static const String loginPath = '/login';
-
-  static List<GoRoute> routes = [
+  @override
+  List<GoRoute> get routes => [
     GoRoute(
-      path: loginPath,
-      name: 'login',
+      path: AppRoutesName.loginScreen,
       builder: (context, state) => BlocProvider(
-        create: (_) => LoginCubit(
-          GetIt.I.get<PostLoginApiUsecase>(),
-        ),
+        create: (_) => LoginCubit(GetIt.I.get<PostLoginApiUsecase>()),
         child: const LoginScreen(),
       ),
     ),

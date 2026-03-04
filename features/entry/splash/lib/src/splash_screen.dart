@@ -3,6 +3,7 @@ import 'package:common/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:navigation/navigation.dart';
 
 import 'bloc/SplashCubit.dart';
 
@@ -18,7 +19,7 @@ class SplashScreen extends StatelessWidget {
           if (state == SplashStatus.authenticated) {
             FlutterToast.toast(message: 'navigate to home');
           } else if (state == SplashStatus.unauthenticated) {
-            context.pushReplacement('/login');
+            context.pushReplacement(AppRoutesName.loginScreen);
           }
         },
         child: const Scaffold(

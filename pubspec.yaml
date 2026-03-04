@@ -5,6 +5,7 @@ workspace:
   - core/common/
   - core/data/
   - core/domain/
+  - core/navigation/
   - model/apiresponse/
   - model/entity/
   - tooling/secret_env/

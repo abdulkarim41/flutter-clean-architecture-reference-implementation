@@ -1,16 +1,15 @@
 import 'package:go_router/go_router.dart';
+import 'package:navigation/navigation.dart';
 import 'package:splash/src/splash_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/SplashCubit.dart';
 
-class SplashRouter {
+class SplashRouter implements BaseRouter {
 
-  static const String splashPath = '/splash';
-
-  static List<GoRoute> routes = [
+  @override
+  List<GoRoute> get routes => [
     GoRoute(
-      path: splashPath,
-      name: 'splash',
+      path: AppRoutesName.splashScreen,
       builder: (context, state) => BlocProvider(
         create: (_) => SplashCubit(),
         child: const SplashScreen(),
