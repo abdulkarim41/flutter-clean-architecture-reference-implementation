@@ -40,4 +40,25 @@ final class AuthRepoImpl with ApiHandler implements AuthRepository {
 
   }
 
+  @override
+  Future<Result<ProfileApiEntity>> fetchProfile() {
+    return performApiCall(
+      request: () async {
+        final result = await _client.get(endpoint: "auth/me");
+        return ProfileApiResponse.fromJson(result);
+      },
+      mapResponse: ProfileApiMapper.toEntity,
+      onSuccess: _cacheProfileData
+    );
+  }
+
+  void _cacheProfileData(ProfileApiEntity data) {
+    _sharedPrefs
+      ..set(key: SpKey.firstName, value: data.firstName)
+      ..set(key: SpKey.lastName, value: data.lastName)
+      ..set(key: SpKey.email, value: data.email)
+      ..set(key: SpKey.gender, value: data.gender)
+      ..set(key: SpKey.isUserAuthenticate, value: true);
+  }
+
 }
