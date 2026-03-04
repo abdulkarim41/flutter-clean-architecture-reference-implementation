@@ -18,8 +18,8 @@ final class AuthRepoImpl with ApiHandler implements AuthRepository {
        _secureStorage = secureStorage;
 
   @override
-  Future<Result<LoginApiEntity>> login(LoginApiParams params) {
-    return performApiCall(
+  Future<Result<LoginApiEntity>> login(LoginApiParams params) async {
+    final result = await performApiCall<LoginApiEntity,LoginApiResponse>(
       request: () async {
         final result = await _client.post(
           endpoint: "auth/login",
@@ -29,9 +29,15 @@ final class AuthRepoImpl with ApiHandler implements AuthRepository {
       },
       mapResponse: LoginApiMapper.toEntity,
     );
+
+    if (result is Success<LoginApiEntity>) {
+      await _secureStorage.set(
+        key: SpKey.accessToken,
+        value: result.data.accessToken,
+      );
+    }
+    return result;
+
   }
-
-
-
 
 }
