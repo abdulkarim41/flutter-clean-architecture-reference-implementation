@@ -8,6 +8,7 @@ workspace:
   - model/apiresponse/
   - model/entity/
   - tooling/secret_env/
+  - features/entry/splash/
   - features/auth/login/
 
 environment:
