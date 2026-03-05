@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:navigation/navigation.dart';
 import 'package:shared/shared.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -41,7 +39,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       );
     } else {
       await context.read<AuthBloc>().completeOnboarding();
-      //context.pushReplacement(AppRoutesName.loginScreen);
       debugPrint("Get Started Clicked");
     }
   }
