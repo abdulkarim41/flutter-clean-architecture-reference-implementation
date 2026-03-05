@@ -5,39 +5,82 @@ import 'auth_state.dart';
 
 class AuthBloc extends Cubit<AuthState> {
   final FetchProfileApiUsecase _fetchProfileApiUsecase;
+  final PostLoginApiUsecase _postLoginApiUsecase;
+
   final SharedPrefs _sharedPrefs;
 
   AuthBloc({
     required FetchProfileApiUsecase fetchProfileApiUsecase,
+    required PostLoginApiUsecase postLoginApiUsecase,
     required SharedPrefs sharedPrefs,
   }) : _fetchProfileApiUsecase = fetchProfileApiUsecase,
+       _postLoginApiUsecase = postLoginApiUsecase,
        _sharedPrefs = sharedPrefs,
        super(const AuthState(AuthStatus.initial));
 
   Future<void> checkAuth() async {
-    if (state.status == AuthStatus.loading) return;
-
-    emit(const AuthState(AuthStatus.loading));
-
     final isOnboardingLaunched = !_sharedPrefs.get<bool>(key: SpKey.isOnboardingLaunched);
+    final isUserAuthenticate = _sharedPrefs.get<bool>(key: SpKey.isUserAuthenticate);
 
-    if(isOnboardingLaunched){
+    if (isOnboardingLaunched) {
       emit(const AuthState(AuthStatus.showOnboarding));
       return;
     }
+
+    if(isUserAuthenticate){
+      fetchProfileApi();
+      return;
+    }
+    emit(const AuthState(AuthStatus.unauthenticated));
+  }
+
+  Future<void> fetchProfileApi() async {
+
+    emit(const AuthState(AuthStatus.loading));
 
     final result = await _fetchProfileApiUsecase.invoke();
 
     result.when(
       success: (_) {
-        /// navigate to home screen
+        /// Navigate to home screen
         emit(const AuthState(AuthStatus.authenticated));
       },
       failure: (_) {
-        /// navigate to login screen
+        /// Navigate to login screen
         emit(const AuthState(AuthStatus.unauthenticated));
       },
     );
+  }
+
+  Future<void> login(String userName, String password) async {
+
+    if (state.status == AuthStatus.loading) return;
+    emit(const AuthState(AuthStatus.loading));
+
+    final result = await _postLoginApiUsecase.invoke(
+        LoginApiParams(username: userName, password: password)
+    );
+
+    result.when(
+      success: (data) {
+        /// Fetch Profile Api Call
+        fetchProfileApi();
+      },
+      failure: (error) {
+        emit(const AuthState(AuthStatus.unauthenticated));
+      },
+    );
+
+  }
+
+  Future<void> logout() async {
+    final isOnboardingLaunched = _sharedPrefs.get<bool>(key: SpKey.isOnboardingLaunched);
+
+    _sharedPrefs
+    ..clearAll()
+    ..set(key: SpKey.isOnboardingLaunched, value: isOnboardingLaunched);
+
+    emit(const AuthState(AuthStatus.unauthenticated));
   }
 
   Future<void> completeOnboarding() async {

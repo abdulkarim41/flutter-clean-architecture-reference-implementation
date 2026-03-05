@@ -6,8 +6,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-
-import '../router/app_navigation.dart';
+import '../router/app_router.dart';
 
 class MyApplication extends StatefulWidget {
   const MyApplication({super.key});
@@ -26,6 +25,7 @@ class _MyApplicationState extends State<MyApplication> {
     super.initState();
     _authBloc = AuthBloc(
       fetchProfileApiUsecase: GetIt.I.get<FetchProfileApiUsecase>(),
+      postLoginApiUsecase: GetIt.I.get<PostLoginApiUsecase>(),
       sharedPrefs: GetIt.I.get<SharedPrefs>(),
     );
     _router = AppRouter.router(_authBloc);
