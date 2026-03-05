@@ -11,7 +11,12 @@ class ProductsScreen extends StatelessWidget {
       body: Center(
         child: FilledButton(
             onPressed: () {
-              context.go(AppRoutesName.productDetailsScreen);
+              context.pushNamed(
+                AppRoutesName.productDetailsScreenName,
+                pathParameters: {
+                  'id': '123',
+                },
+              );
             },
             child: const Text('Navigate To Product Details Screen')
         )

@@ -6,9 +6,12 @@ class ProductDetailsRouter implements BaseRouter {
   @override
   List<GoRoute> get routes => [
     GoRoute(
-      path: AppRoutesName.productDetailsScreen,
-      name: AppRoutesName.productDetailsScreen,
-      builder: (context, state) => const ProductDetailsScreen(),
+      path: AppRoutesPath.productDetailsScreenPath,
+      name: AppRoutesName.productDetailsScreenName,
+      builder: (context, state) {
+        final String productId = state.pathParameters['id']!;
+        return ProductDetailsScreen(productId: productId);
+      },
       redirect: (context, state) {
         return null;
       },

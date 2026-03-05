@@ -8,7 +8,8 @@ class CartRouter implements BaseRouter {
   @override
   List<GoRoute> get routes => [
     GoRoute(
-      path: AppRoutesName.cartScreen,
+      path: AppRoutesPath.cartScreenPath,
+      name: AppRoutesName.cartScreenName,
       builder: (context, state) => CartScreen(),
     ),
   ];

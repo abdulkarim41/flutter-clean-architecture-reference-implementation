@@ -7,7 +7,8 @@ class SplashRouter implements BaseRouter {
   @override
   List<GoRoute> get routes => [
     GoRoute(
-      path: AppRoutesName.splashScreen,
+      path: AppRoutesPath.splashScreenPath,
+      name: AppRoutesName.splashScreenName,
       builder: (context, state) => const SplashScreen(),
     ),
   ];

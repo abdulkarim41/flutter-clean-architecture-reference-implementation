@@ -1,16 +1,16 @@
 class AppRoutesName {
   const AppRoutesName._();
 
-  static const splashScreen = "/";
-  static const onboardingScreen = "/onboardingScreen";
-  static const loginScreen = "/loginScreen";
-  //static const homeScreen = "/homeScreen";
-
+  static const splashScreenName = "splash";
+  static const onboardingScreenName = "onboarding";
+  static const loginScreenName = "login";
 
   // Bottom nav screens
-  static const productScreen = '/product';
-  static const productDetailsScreen = '/product_details';
-  static const cartScreen = '/cart';
-  static const profileScreen = '/profile';
+  static const productScreenName = 'product';
+  static const cartScreenName = 'cart';
+  static const profileScreenName = 'profile';
+
+  // details screens
+  static const productDetailsScreenName = 'productDetails';
 
 }

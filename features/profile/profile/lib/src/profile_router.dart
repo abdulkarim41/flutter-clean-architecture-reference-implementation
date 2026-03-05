@@ -7,7 +7,8 @@ class ProfileRouter implements BaseRouter {
   @override
   List<GoRoute> get routes => [
     GoRoute(
-      path: AppRoutesName.profileScreen,
+      path: AppRoutesPath.profileScreenPath,
+      name: AppRoutesName.profileScreenName,
       builder: (context, state) => ProfileScreen(),
     ),
   ];

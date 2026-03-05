@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
-  const ProductDetailsScreen({super.key});
+  final String productId;
+  const ProductDetailsScreen({super.key, required this.productId});
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +16,10 @@ class ProductDetailsScreen extends StatelessWidget {
           },
         ),
       ),
-      body: const Center(
+      body: Center(
         child: Text(
-          'Product Details Screen',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          'Product id is : $productId',
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
     );

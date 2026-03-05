@@ -7,7 +7,8 @@ class OnboardingRouter implements BaseRouter {
   @override
   List<GoRoute> get routes => [
     GoRoute(
-      path: AppRoutesName.onboardingScreen,
+      path: AppRoutesPath.onboardingScreenPath,
+      name: AppRoutesName.onboardingScreenName,
       builder: (context, state) => const OnboardingScreen(),
     ),
   ];

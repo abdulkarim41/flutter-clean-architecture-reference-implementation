@@ -11,7 +11,7 @@ class LoginRouter implements BaseRouter {
   @override
   List<GoRoute> get routes => [
     GoRoute(
-      path: AppRoutesName.loginScreen,
+      path: AppRoutesPath.loginScreenPath,
       builder: (context, state) => BlocProvider(
         create: (_) => LoginCubit(GetIt.I.get<PostLoginApiUsecase>()),
         child: const LoginScreen(),

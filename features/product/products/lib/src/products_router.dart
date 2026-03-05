@@ -6,7 +6,8 @@ class ProductsRouter implements BaseRouter {
   @override
   List<GoRoute> get routes => [
     GoRoute(
-      path: AppRoutesName.productScreen,
+      path: AppRoutesPath.productScreenPath,
+      name: AppRoutesName.productScreenName,
       builder: (context, state) => const ProductsScreen(),
     ),
   ];
