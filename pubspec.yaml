@@ -14,6 +14,7 @@ workspace:
   - features/auth/login/
   - features/auth/shared/
   - features/product/products/
+  - features/product/product_details/
   - features/checkout/cart/
   - features/profile/profile/
 

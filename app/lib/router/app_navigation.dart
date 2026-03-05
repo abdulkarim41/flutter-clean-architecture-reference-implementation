@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:login/login.dart';
 import 'package:navigation/navigation.dart';
+import 'package:product_details/product_details.dart';
 import 'package:shared/shared.dart';
 import 'package:splash/splash.dart';
 import 'package:onboarding/onboarding.dart';
@@ -33,13 +34,11 @@ class AppRouter {
             return location == AppRoutesName.loginScreen ? null : AppRoutesName.loginScreen;
 
           case AuthStatus.authenticated:
-            final isBottomTab = [
-              AppRoutesName.homeScreen,
-              AppRoutesName.cartScreen,
-              AppRoutesName.profileScreen,
-            ].contains(location);
+            final isBottomTab = location.startsWith(AppRoutesName.productScreen) ||
+                location.startsWith(AppRoutesName.cartScreen) ||
+                location.startsWith(AppRoutesName.profileScreen);
 
-            return isBottomTab ? null : AppRoutesName.homeScreen;
+            return isBottomTab ? null : AppRoutesName.productScreen;
 
           default:
             return null;
@@ -58,17 +57,12 @@ class AppRouter {
             );
           },
           branches: [
-            StatefulShellBranch(
-              routes: ProductsRouter().routes,
-            ),
-            StatefulShellBranch(
-              routes: CartRouter().routes,
-            ),
-            StatefulShellBranch(
-              routes: ProfileRouter().routes,
-            ),
+            StatefulShellBranch(routes: ProductsRouter().routes),
+            StatefulShellBranch(routes: CartRouter().routes),
+            StatefulShellBranch(routes: ProfileRouter().routes),
           ],
         ),
+        ...ProductDetailsRouter().routes
       ],
     );
   }
@@ -97,7 +91,6 @@ class BottomNavigationShell extends StatelessWidget {
       bottomNavigationBar: NavigationBar(
         selectedIndex: navigationShell.currentIndex,
         onDestinationSelected: _onTabChange,
-
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.home_outlined),

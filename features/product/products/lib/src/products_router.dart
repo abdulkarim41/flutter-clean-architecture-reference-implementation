@@ -3,12 +3,11 @@ import 'package:navigation/navigation.dart';
 import 'package:products/src/products_screen.dart';
 
 class ProductsRouter implements BaseRouter {
-
   @override
   List<GoRoute> get routes => [
     GoRoute(
-      path: AppRoutesName.homeScreen,
-      builder: (context, state) => ProductsScreen(),
+      path: AppRoutesName.productScreen,
+      builder: (context, state) => const ProductsScreen(),
     ),
   ];
 }
