@@ -6,6 +6,7 @@ import 'package:navigation/navigation.dart';
 import 'package:shared/shared.dart';
 import 'package:splash/splash.dart';
 import 'package:onboarding/onboarding.dart';
+import 'package:products/products.dart';
 
 import 'router_refresh_stream.dart';
 
@@ -112,10 +113,7 @@ class BottomNavigationShell extends StatelessWidget {
 
 
 List<GoRoute> bottomTabRoutes() => [
-  GoRoute(
-    path: AppRoutesName.homeScreen,
-    pageBuilder: (context, state) => const MaterialPage(child: HomeScreen()),
-  ),
+  ...ProductsRouter().routes,
   GoRoute(
     path: AppRoutesName.productScreen,
     pageBuilder: (context, state) => const MaterialPage(child: ProductScreen()),
@@ -127,21 +125,7 @@ List<GoRoute> bottomTabRoutes() => [
 ];
 
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          'Home Screen',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      ),
-    );
-  }
-}
 
 class ProductScreen extends StatelessWidget {
   const ProductScreen({super.key});

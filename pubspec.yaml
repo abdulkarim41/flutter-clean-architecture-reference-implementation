@@ -13,6 +13,7 @@ workspace:
   - features/entry/onboarding/
   - features/auth/login/
   - features/auth/shared/
+  - features/product/products/
 
 environment:
   sdk: ^3.10.4
