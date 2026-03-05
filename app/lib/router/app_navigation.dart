@@ -32,8 +32,6 @@ class AppRouter {
           case AuthStatus.unauthenticated:
             return location == AppRoutesName.loginScreen ? null : AppRoutesName.loginScreen;
 
-          // case AuthStatus.authenticated:
-          //   return location == AppRoutesName.homeScreen ? null : AppRoutesName.homeScreen;
           case AuthStatus.authenticated:
             final isBottomTab = [
               AppRoutesName.homeScreen,
@@ -53,9 +51,23 @@ class AppRouter {
         ...OnboardingRouter().routes,
         ...LoginRouter().routes,
 
-        ShellRoute(
-          builder: (context, state, child) => BottomNavigationShell(child: child),
-          routes: bottomTabRoutes(),
+        StatefulShellRoute.indexedStack(
+          builder: (context, state, navigationShell) {
+            return BottomNavigationShell(
+              navigationShell: navigationShell,
+            );
+          },
+          branches: [
+            StatefulShellBranch(
+              routes: ProductsRouter().routes,
+            ),
+            StatefulShellBranch(
+              routes: CartRouter().routes,
+            ),
+            StatefulShellBranch(
+              routes: ProfileRouter().routes,
+            ),
+          ],
         ),
       ],
     );
@@ -63,48 +75,43 @@ class AppRouter {
 }
 
 class BottomNavigationShell extends StatelessWidget {
-  final Widget child;
+  final StatefulNavigationShell navigationShell;
 
-  const BottomNavigationShell({super.key, required this.child});
+  const BottomNavigationShell({
+    super.key,
+    required this.navigationShell,
+  });
 
-  static const tabs = [
-    AppRoutesName.homeScreen,
-    AppRoutesName.cartScreen,
-    AppRoutesName.profileScreen,
-  ];
-
-  int _locationToTabIndex(String location) {
-    if (location.startsWith(AppRoutesName.cartScreen)) return 1;
-    if (location.startsWith(AppRoutesName.profileScreen)) return 2;
-    return 0;
+  void _onTabChange(int index) {
+    navigationShell.goBranch(
+      index,
+      initialLocation: index == navigationShell.currentIndex,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final location = GoRouterState.of(context).uri.toString();
-
-    final currentIndex = _locationToTabIndex(location);
-
     return Scaffold(
-      body: child,
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (index) {
-          if (index == currentIndex) return;
+      body: navigationShell,
 
-          context.go(tabs[index]);
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: navigationShell.currentIndex,
+        onDestinationSelected: _onTabChange,
+
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.home_outlined),
+            selectedIcon: Icon(Icons.home),
             label: "Home",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
+          NavigationDestination(
+            icon: Icon(Icons.shopping_cart_outlined),
+            selectedIcon: Icon(Icons.shopping_cart),
             label: "Cart",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+          NavigationDestination(
+            icon: Icon(Icons.person_outline),
+            selectedIcon: Icon(Icons.person),
             label: "Profile",
           ),
         ],
@@ -112,11 +119,4 @@ class BottomNavigationShell extends StatelessWidget {
     );
   }
 }
-
-
-List<GoRoute> bottomTabRoutes() => [
-  ...ProductsRouter().routes,
-  ...CartRouter().routes,
-  ...ProfileRouter().routes,
-];
 
