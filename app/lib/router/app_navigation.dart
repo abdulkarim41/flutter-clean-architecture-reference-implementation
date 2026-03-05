@@ -7,6 +7,7 @@ import 'package:shared/shared.dart';
 import 'package:splash/splash.dart';
 import 'package:onboarding/onboarding.dart';
 import 'package:products/products.dart';
+import 'package:cart/cart.dart';
 
 import 'router_refresh_stream.dart';
 
@@ -35,7 +36,7 @@ class AppRouter {
           case AuthStatus.authenticated:
             final isBottomTab = [
               AppRoutesName.homeScreen,
-              AppRoutesName.productScreen,
+              AppRoutesName.cartScreen,
               AppRoutesName.profileScreen,
             ].contains(location);
 
@@ -67,12 +68,12 @@ class BottomNavigationShell extends StatelessWidget {
 
   static const tabs = [
     AppRoutesName.homeScreen,
-    AppRoutesName.productScreen,
+    AppRoutesName.cartScreen,
     AppRoutesName.profileScreen,
   ];
 
   int _locationToTabIndex(String location) {
-    if (location.startsWith(AppRoutesName.productScreen)) return 1;
+    if (location.startsWith(AppRoutesName.cartScreen)) return 1;
     if (location.startsWith(AppRoutesName.profileScreen)) return 2;
     return 0;
   }
@@ -99,7 +100,7 @@ class BottomNavigationShell extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
-            label: "Product",
+            label: "Cart",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
@@ -114,34 +115,13 @@ class BottomNavigationShell extends StatelessWidget {
 
 List<GoRoute> bottomTabRoutes() => [
   ...ProductsRouter().routes,
-  GoRoute(
-    path: AppRoutesName.productScreen,
-    pageBuilder: (context, state) => const MaterialPage(child: ProductScreen()),
-  ),
+  ...CartRouter().routes,
+
   GoRoute(
     path: AppRoutesName.profileScreen,
     pageBuilder: (context, state) => const MaterialPage(child: ProfileScreen()),
   ),
 ];
-
-
-
-
-class ProductScreen extends StatelessWidget {
-  const ProductScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          'Product Screen',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      ),
-    );
-  }
-}
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

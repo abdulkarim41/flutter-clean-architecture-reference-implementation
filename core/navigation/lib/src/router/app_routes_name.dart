@@ -9,12 +9,12 @@ class AppRoutesName {
 
   // Bottom nav screens
   static const homeScreen = '/home';
-  static const productScreen = '/product';
+  static const cartScreen = '/cart';
   static const profileScreen = '/profile';
 
   static const bottomTabs = [
     homeScreen,
-    productScreen,
+    cartScreen,
     profileScreen,
   ];
 
