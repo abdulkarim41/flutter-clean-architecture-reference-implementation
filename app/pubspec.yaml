@@ -20,11 +20,14 @@ dependencies:
   domain: ^0.0.1
   entity: ^0.0.1
   navigation: ^0.0.1
+  shared: ^0.0.1 # shared auth bloc dependencies
+
   cupertino_icons: ^1.0.8
   http: ^1.6.0
   get_it: ^8.0.3
   json_annotation: ^4.9.0
   go_router: ^16.2.0
+  flutter_bloc: ^9.1.1
 
 dev_dependencies:
   flutter_test:

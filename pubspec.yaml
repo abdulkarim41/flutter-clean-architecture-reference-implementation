@@ -12,6 +12,7 @@ workspace:
   - features/entry/splash/
   - features/entry/onboarding/
   - features/auth/login/
+  - features/auth/shared/
 
 environment:
   sdk: ^3.10.4

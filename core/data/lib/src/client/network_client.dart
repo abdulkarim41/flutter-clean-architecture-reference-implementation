@@ -9,8 +9,9 @@ final class NetworkClient {
   final String _baseUrl;
   final Duration _timeout;
   final SecureStorage _secureStorage;
+  bool _refreshAttempted = false;
 
-  const NetworkClient({
+  NetworkClient({
     required String baseUrl,
     required SecureStorage secureStorage,
     Duration timeout = const Duration(seconds: 30),
@@ -167,14 +168,25 @@ final class NetworkClient {
   }
 
   Future<dynamic> _handleTokenRefresh(Future<http.Response> Function() request) async {
-    try{
+    if(_refreshAttempted){
+      throw const NetworkException.unauthorized(401);
+    }
+    _refreshAttempted = true;
+
+    try {
       final response = await get(endpoint: 'auth/refresh');
-      final newToken = response['token'] as String?;
+      final newToken = response['accessToken'] as String?;
+      if (newToken == null || newToken.isEmpty) {
+        throw NetworkException.unauthorized(401);
+      }
       await _secureStorage.set(key: SpKey.accessToken, value: newToken);
 
+      // Retry original request once
       return _handleRequest(request);
-    }catch(e){
-      rethrow;
+    } catch (e) {
+      throw NetworkException.unauthorized(401);
+    } finally {
+      _refreshAttempted = false; // reset for next API call
     }
   }
   
