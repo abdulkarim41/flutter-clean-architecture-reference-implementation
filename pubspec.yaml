@@ -15,6 +15,7 @@ workspace:
   - features/auth/shared/
   - features/product/products/
   - features/checkout/cart/
+  - features/profile/profile/
 
 environment:
   sdk: ^3.10.4

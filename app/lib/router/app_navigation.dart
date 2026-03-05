@@ -8,6 +8,7 @@ import 'package:splash/splash.dart';
 import 'package:onboarding/onboarding.dart';
 import 'package:products/products.dart';
 import 'package:cart/cart.dart';
+import 'package:profile/profile.dart';
 
 import 'router_refresh_stream.dart';
 
@@ -116,25 +117,6 @@ class BottomNavigationShell extends StatelessWidget {
 List<GoRoute> bottomTabRoutes() => [
   ...ProductsRouter().routes,
   ...CartRouter().routes,
-
-  GoRoute(
-    path: AppRoutesName.profileScreen,
-    pageBuilder: (context, state) => const MaterialPage(child: ProfileScreen()),
-  ),
+  ...ProfileRouter().routes,
 ];
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          'Profile Screen',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      ),
-    );
-  }
-}
