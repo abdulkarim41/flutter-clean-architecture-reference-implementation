@@ -1,6 +1,7 @@
 import 'dart:io';
+import 'package:common/common.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared/src/auth_bloc.dart';
+import 'package:shared/shared.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +24,10 @@ class _MyApplicationState extends State<MyApplication> {
   @override
   void initState() {
     super.initState();
-    _authBloc = AuthBloc(fetchProfile: GetIt.I.get<FetchProfileApiUsecase>(),);
+    _authBloc = AuthBloc(
+      fetchProfileApiUsecase: GetIt.I.get<FetchProfileApiUsecase>(),
+      sharedPrefs: GetIt.I.get<SharedPrefs>(),
+    );
     _router = AppRouter.router(_authBloc);
   }
 

@@ -20,6 +20,11 @@ class AppRouter {
 
         final isSplash = state.matchedLocation == AppRoutesName.splashScreen;
         final isLogin = state.matchedLocation == AppRoutesName.loginScreen;
+        final isOnboarding = state.matchedLocation == AppRoutesName.onboardingScreen;
+
+        if(authState.status == AuthStatus.showOnboarding) {
+          return isOnboarding ? null : AppRoutesName.onboardingScreen;
+        }
 
         /// Loading → stay splash
         if (authState.status == AuthStatus.loading) {

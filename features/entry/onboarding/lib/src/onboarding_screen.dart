@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:navigation/navigation.dart';
+import 'package:shared/shared.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -31,14 +33,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     ),
   ];
 
-  void _nextPage() {
+  void _nextPage() async {
     if (_currentIndex < _pages.length - 1) {
       _controller.nextPage(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
     } else {
-      context.pushReplacement(AppRoutesName.loginScreen);
+      await context.read<AuthBloc>().completeOnboarding();
+      //context.pushReplacement(AppRoutesName.loginScreen);
       debugPrint("Get Started Clicked");
     }
   }

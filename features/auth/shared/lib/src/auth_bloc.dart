@@ -4,28 +4,45 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'auth_state.dart';
 
 class AuthBloc extends Cubit<AuthState> {
-  final FetchProfileApiUsecase fetchProfile;
+  final FetchProfileApiUsecase _fetchProfileApiUsecase;
+  final SharedPrefs _sharedPrefs;
 
   AuthBloc({
-    required this.fetchProfile,
-  }) : super(const AuthState(AuthStatus.initial));
+    required FetchProfileApiUsecase fetchProfileApiUsecase,
+    required SharedPrefs sharedPrefs,
+  }) : _fetchProfileApiUsecase = fetchProfileApiUsecase,
+       _sharedPrefs = sharedPrefs,
+       super(const AuthState(AuthStatus.initial));
 
   Future<void> checkAuth() async {
     if (state.status == AuthStatus.loading) return;
 
     emit(const AuthState(AuthStatus.loading));
 
-    final result = await fetchProfile.invoke();
+    final isOnboardingLaunched = !_sharedPrefs.get<bool>(key: SpKey.isOnboardingLaunched);
+
+    if(isOnboardingLaunched){
+      emit(const AuthState(AuthStatus.showOnboarding));
+      return;
+    }
+
+    final result = await _fetchProfileApiUsecase.invoke();
 
     result.when(
       success: (_) {
-        Logcat.log('checkAuth success that means authenticated');
+        /// navigate to home screen
         emit(const AuthState(AuthStatus.authenticated));
       },
       failure: (_) {
-        Logcat.log('checkAuth failure that means unauthenticated');
+        /// navigate to login screen
         emit(const AuthState(AuthStatus.unauthenticated));
       },
     );
   }
+
+  Future<void> completeOnboarding() async {
+    await _sharedPrefs.set<bool>(key: SpKey.isOnboardingLaunched,value: true);
+    emit(const AuthState(AuthStatus.unauthenticated));
+  }
+
 }
