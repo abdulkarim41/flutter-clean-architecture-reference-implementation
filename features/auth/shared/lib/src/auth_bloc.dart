@@ -34,9 +34,8 @@ class AuthBloc extends Cubit<AuthState> {
     emit(const AuthState(AuthStatus.unauthenticated));
   }
 
-  Future<void> fetchProfileApi() async {
-
-    emit(const AuthState(AuthStatus.loading));
+  Future<void> fetchProfileApi({bool isFromLogin = false}) async {
+    if(!isFromLogin) emit(const AuthState(AuthStatus.loading));
 
     final result = await _fetchProfileApiUsecase.invoke();
 
@@ -54,8 +53,7 @@ class AuthBloc extends Cubit<AuthState> {
 
   Future<void> login(String userName, String password) async {
 
-    if (state.status == AuthStatus.loading) return;
-    emit(const AuthState(AuthStatus.loading));
+    emit(AuthState(state.status, isLoginLoading: true));
 
     final result = await _postLoginApiUsecase.invoke(
         LoginApiParams(username: userName, password: password)
@@ -64,7 +62,7 @@ class AuthBloc extends Cubit<AuthState> {
     result.when(
       success: (data) {
         /// Fetch Profile Api Call
-        fetchProfileApi();
+        fetchProfileApi(isFromLogin: true);
       },
       failure: (error) {
         emit(const AuthState(AuthStatus.unauthenticated));

@@ -122,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 55,
                   child: BlocBuilder<AuthBloc, AuthState>(
                     builder: (context, state) {
-                      final bool isLoading = state.status == AuthStatus.loading;
+                      final bool isLoading = state.isLoginLoading;
                       return SizedBox(
                         height: 55,
                         width: double.infinity,
