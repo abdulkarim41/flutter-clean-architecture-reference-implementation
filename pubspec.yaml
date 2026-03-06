@@ -3,6 +3,8 @@ name: flutter_clean_architecture_reference_implementation
 workspace:
   - app/
   - core/common/
+  - ui/ui/
+  - ui/designsystem/
   - core/data/
   - core/domain/
   - core/navigation/
