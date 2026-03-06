@@ -16,6 +16,7 @@ workspace:
   - features/product/products/
   - features/product/product_details/
   - features/checkout/cart/
+  - features/checkout/checkout/
   - features/profile/profile/
 
 environment:
