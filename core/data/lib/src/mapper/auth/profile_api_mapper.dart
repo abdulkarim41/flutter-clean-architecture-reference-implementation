@@ -12,7 +12,7 @@ abstract class ProfileApiMapper {
       firstName: response.firstName ?? "",
       lastName: response.lastName ?? "",
       gender: response.gender ?? "",
-      image: response.image ?? "",
+      imageUrl: response.image ?? "",
     );
   }
 

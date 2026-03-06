@@ -8,7 +8,7 @@ final class SpKey {
   static const lastName = "lastName";
   static const email = "email";
   static const gender = "gender";
-  static const profileImage = "profileImage";
+  static const profileImageUrl = "profileImage";
 
 
 }

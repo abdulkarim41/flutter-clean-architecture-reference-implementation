@@ -6,14 +6,14 @@ class ProfileApiEntity {
   final String firstName;
   final String lastName;
   final String gender;
-  final String image;
+  final String imageUrl;
 
   const ProfileApiEntity({
     required this.email,
     required this.firstName,
     required this.lastName,
     required this.gender,
-    required this.image,
+    required this.imageUrl,
   });
 
 }
