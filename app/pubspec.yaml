@@ -19,6 +19,7 @@ dependencies:
   cart: ^0.0.1
   checkout: ^0.0.1
   profile: ^0.0.1
+  update_profile: ^0.0.1
 
   common: ^0.0.1
   data: ^0.0.1

@@ -18,6 +18,7 @@ workspace:
   - features/checkout/cart/
   - features/checkout/checkout/
   - features/profile/profile/
+  - features/profile/update_profile/
 
 environment:
   sdk: ^3.10.4
