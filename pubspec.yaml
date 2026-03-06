@@ -10,6 +10,7 @@ workspace:
   - core/navigation/
   - model/apiresponse/
   - model/entity/
+  - tooling/code_analyzer/
   - tooling/secret_env/
   - features/entry/splash/
   - features/entry/onboarding/
@@ -35,6 +36,16 @@ melos:
         sdk: ^3.10.4
 
       dependencies:
+
+        code_analyzer: ^0.0.1
+        common: ^0.0.1
+        domain: ^0.0.1
+        designsystem: ^0.0.1
+        navigation: ^0.0.1
+        entity: ^0.0.1
+        data: ^0.0.1
+        ui: ^0.0.1
+
         cupertino_icons: ^1.0.8
         http: ^1.6.0
         logger: ^2.6.1
@@ -53,6 +64,7 @@ melos:
         flutter_test:
           sdk: flutter
         flutter_lints: ^6.0.0
+        dart_code_linter: ^3.0.0
         build_runner: ^2.7.0
         envied_generator: ^1.2.0
         melos: ^6.3.3
