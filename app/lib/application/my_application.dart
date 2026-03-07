@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import '../router/app_router.dart';
+part 'theme_config.dart';
 
 class MyApplication extends StatefulWidget {
   const MyApplication({super.key});
@@ -44,8 +45,8 @@ class _MyApplicationState extends State<MyApplication> {
             child: MaterialApp.router(
               debugShowCheckedModeBanner: false,
               routerConfig: _router,
-              theme: AppTheme.light,
-              darkTheme: AppTheme.dark,
+              theme: _buildAppTheme(Brightness.light),
+              darkTheme: _buildAppTheme(Brightness.dark),
               themeMode: ThemeMode.system,
             ),
           ),
