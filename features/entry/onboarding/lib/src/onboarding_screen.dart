@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:designsystem/designsystem.dart';
 import 'package:shared/shared.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -121,19 +122,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: SizedBox(
                 width: double.infinity,
                 height: 50,
-                child: FilledButton(
+                child: AppButton.filled(
                   onPressed: _nextPage,
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: Text(
-                    _currentIndex == _pages.length - 1
-                        ? "Get Started"
-                        : "Next",
-                    style: const TextStyle(fontSize: 16),
-                  ),
+                  text: _currentIndex == _pages.length - 1
+                      ? "Get Started"
+                      : "Next",
                 ),
               ),
             ),

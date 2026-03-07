@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:common/common.dart';
+import 'package:designsystem/designsystem.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared/shared.dart';
 import 'package:domain/domain.dart';
@@ -43,6 +44,9 @@ class _MyApplicationState extends State<MyApplication> {
             child: MaterialApp.router(
               debugShowCheckedModeBanner: false,
               routerConfig: _router,
+              theme: AppTheme.light,
+              darkTheme: AppTheme.dark,
+              themeMode: ThemeMode.system,
             ),
           ),
         );
