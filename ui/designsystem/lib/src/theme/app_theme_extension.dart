@@ -7,8 +7,14 @@ extension AppThemeExtension on BuildContext {
   BackgroundColorThemeExtension get backgroundColorTheme =>
       appTheme.backgroundColorTheme;
 
-  AppButtonThemeExtension get buttonTheme => appTheme.buttonThemeExtension;
+  AppButtonThemeExtension get buttonTheme =>
+      appTheme.buttonThemeExtension;
 
+  AppCardThemeExtension get cardTheme =>
+      appTheme.cardThemeExtension;
+
+  AppTextFieldThemeExtension get textFieldTheme =>
+      appTheme.textFieldThemeExtension;
 
 }
 

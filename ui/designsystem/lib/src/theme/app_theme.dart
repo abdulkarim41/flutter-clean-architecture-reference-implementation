@@ -5,20 +5,28 @@ final class AppTheme extends ThemeExtension<AppTheme> {
 
   final BackgroundColorThemeExtension backgroundColorTheme;
   final AppButtonThemeExtension buttonThemeExtension;
+  final AppCardThemeExtension cardThemeExtension;
+  final AppTextFieldThemeExtension textFieldThemeExtension;
 
   const AppTheme._({
     required this.backgroundColorTheme,
     required this.buttonThemeExtension,
+    required this.cardThemeExtension,
+    required this.textFieldThemeExtension,
   });
 
   @override
   ThemeExtension<AppTheme> copyWith({
     BackgroundColorThemeExtension? backgroundColorTheme,
     AppButtonThemeExtension? buttonThemeExtension,
+    AppCardThemeExtension? cardThemeExtension,
+    AppTextFieldThemeExtension? textFieldThemeExtension,
   }) {
     return AppTheme._(
       backgroundColorTheme: backgroundColorTheme ?? this.backgroundColorTheme,
       buttonThemeExtension: buttonThemeExtension ?? this.buttonThemeExtension,
+      cardThemeExtension: cardThemeExtension ?? this.cardThemeExtension,
+      textFieldThemeExtension: textFieldThemeExtension ?? this.textFieldThemeExtension,
     );
   }
 
@@ -26,6 +34,8 @@ final class AppTheme extends ThemeExtension<AppTheme> {
     return AppTheme._(
       backgroundColorTheme: BackgroundColorThemeExtension.light(),
       buttonThemeExtension: AppButtonThemeExtension.light(),
+      cardThemeExtension: AppCardThemeExtension.light(),
+      textFieldThemeExtension: AppTextFieldThemeExtension.light(),
     );
   }
 
@@ -33,6 +43,8 @@ final class AppTheme extends ThemeExtension<AppTheme> {
     return AppTheme._(
       backgroundColorTheme: BackgroundColorThemeExtension.dark(),
       buttonThemeExtension: AppButtonThemeExtension.dark(),
+      cardThemeExtension: AppCardThemeExtension.dark(),
+      textFieldThemeExtension: AppTextFieldThemeExtension.dark(),
     );
   }
 
