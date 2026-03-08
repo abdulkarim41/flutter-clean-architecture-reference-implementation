@@ -7,12 +7,16 @@ final class AppTheme extends ThemeExtension<AppTheme> {
   final AppButtonThemeExtension buttonThemeExtension;
   final AppCardThemeExtension cardThemeExtension;
   final AppTextFieldThemeExtension textFieldThemeExtension;
+  final TextColorThemeExtension textColorThemeExtension;
+  final AppTypographyTheme appTypographyTheme;
 
   const AppTheme._({
     required this.backgroundColorTheme,
     required this.buttonThemeExtension,
     required this.cardThemeExtension,
     required this.textFieldThemeExtension,
+    required this.textColorThemeExtension,
+    required this.appTypographyTheme,
   });
 
   @override
@@ -21,12 +25,16 @@ final class AppTheme extends ThemeExtension<AppTheme> {
     AppButtonThemeExtension? buttonThemeExtension,
     AppCardThemeExtension? cardThemeExtension,
     AppTextFieldThemeExtension? textFieldThemeExtension,
+    TextColorThemeExtension? textColorThemeExtension,
+    AppTypographyTheme? appTypographyTheme,
   }) {
     return AppTheme._(
       backgroundColorTheme: backgroundColorTheme ?? this.backgroundColorTheme,
       buttonThemeExtension: buttonThemeExtension ?? this.buttonThemeExtension,
       cardThemeExtension: cardThemeExtension ?? this.cardThemeExtension,
       textFieldThemeExtension: textFieldThemeExtension ?? this.textFieldThemeExtension,
+      textColorThemeExtension: textColorThemeExtension ?? this.textColorThemeExtension,
+      appTypographyTheme: appTypographyTheme ?? this.appTypographyTheme,
     );
   }
 
@@ -36,6 +44,8 @@ final class AppTheme extends ThemeExtension<AppTheme> {
       buttonThemeExtension: AppButtonThemeExtension.light(),
       cardThemeExtension: AppCardThemeExtension.light(),
       textFieldThemeExtension: AppTextFieldThemeExtension.light(),
+      textColorThemeExtension: TextColorThemeExtension.light(),
+      appTypographyTheme: AppTypographyTheme.fromColors(TextColorThemeExtension.light()),
     );
   }
 
@@ -45,6 +55,8 @@ final class AppTheme extends ThemeExtension<AppTheme> {
       buttonThemeExtension: AppButtonThemeExtension.dark(),
       cardThemeExtension: AppCardThemeExtension.dark(),
       textFieldThemeExtension: AppTextFieldThemeExtension.dark(),
+      textColorThemeExtension: TextColorThemeExtension.dark(),
+      appTypographyTheme: AppTypographyTheme.fromColors(TextColorThemeExtension.dark()),
     );
   }
 
@@ -55,39 +67,3 @@ final class AppTheme extends ThemeExtension<AppTheme> {
   }
 
 }
-
-// class LightTheme {
-//
-//   static ThemeData theme = ThemeData(
-//     brightness: Brightness.light,
-//
-//     primaryColor: AppColors.primary,
-//
-//     scaffoldBackgroundColor: Colors.white,
-//
-//     colorScheme: const ColorScheme.light(
-//       primary: AppColors.primary,
-//       secondary: AppColors.secondary,
-//     ),
-//   );
-// }
-//
-// class DarkTheme {
-//
-//   static ThemeData theme = ThemeData(
-//     brightness: Brightness.dark,
-//
-//     primaryColor: AppColors.primary,
-//
-//     scaffoldBackgroundColor: Colors.black,
-//
-//     colorScheme: const ColorScheme.dark(
-//       primary: AppColors.primary,
-//     ),
-//
-//     appBarTheme: const AppBarTheme(
-//       elevation: 0,
-//       backgroundColor: Colors.black,
-//     ),
-//   );
-// }

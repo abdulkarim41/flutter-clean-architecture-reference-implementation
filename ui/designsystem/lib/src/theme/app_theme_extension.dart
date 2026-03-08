@@ -16,5 +16,11 @@ extension AppThemeExtension on BuildContext {
   AppTextFieldThemeExtension get textFieldTheme =>
       appTheme.textFieldThemeExtension;
 
+  TextColorThemeExtension get textColorTheme =>
+      appTheme.textColorThemeExtension;
+
+  AppTypographyTheme get appTypography =>
+      appTheme.appTypographyTheme;
+
 }
 

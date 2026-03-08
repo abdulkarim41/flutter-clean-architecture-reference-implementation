@@ -1,12 +1,7 @@
-import 'package:common/common.dart';
 import 'package:designsystem/designsystem.dart';
-import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/shared.dart';
-
-import 'bloc/login_cubit.dart';
-import 'bloc/login_state.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -47,12 +42,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 const SizedBox(height: 8),
 
-                const Text(
+                AppText(
                   "Please login to your account",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                  ),
+                  textWeight: const AppTextWeight.regular(),
+                  textScale: AppTextScale.bodyLarge,
                 ),
 
                 const SizedBox(height: 40),
