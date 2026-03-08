@@ -6,8 +6,8 @@ final class AppTextFieldThemeExtension
 
   factory AppTextFieldThemeExtension.light() {
     return AppTextFieldThemeExtension(
-      filled: const AppTextFieldStyle(
-        background: Color(0xFFF5F5F5),
+      filled: AppTextFieldStyle(
+        background: AppColors.white,
         border: Color(0xFFE0E0E0),
         focusedBorder: Color(0xFF0066FF),
       ),

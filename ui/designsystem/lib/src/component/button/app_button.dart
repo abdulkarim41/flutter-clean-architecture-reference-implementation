@@ -26,8 +26,10 @@ class AppButton extends StatelessWidget {
     required String label,
     required VoidCallback? onPressed,
     bool loading = false,
+    Key? key
   }) {
     return AppButton._(
+      key: key,
       variant: AppButtonVariant.filled,
       role: role,
       label: label,
@@ -42,8 +44,10 @@ class AppButton extends StatelessWidget {
     required String label,
     required VoidCallback? onPressed,
     bool loading = false,
+    Key? key
   }) {
     return AppButton._(
+      key: key,
       variant: AppButtonVariant.outline,
       role: role,
       label: label,
@@ -58,8 +62,10 @@ class AppButton extends StatelessWidget {
     required String label,
     required VoidCallback? onPressed,
     bool loading = false,
+    Key? key
   }) {
     return AppButton._(
+      key: key,
       variant: AppButtonVariant.text,
       role: role,
       label: label,
@@ -74,8 +80,10 @@ class AppButton extends StatelessWidget {
     required IconData icon,
     required VoidCallback? onPressed,
     bool loading = false,
+    Key? key
   }) {
     return AppButton._(
+      key: key,
       variant: AppButtonVariant.icon,
       role: role,
       icon: icon,
