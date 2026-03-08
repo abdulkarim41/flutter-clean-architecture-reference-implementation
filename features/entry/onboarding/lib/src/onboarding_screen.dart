@@ -124,8 +124,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 width: double.infinity,
                 height: 50,
                 child: AppButton.filled(
+                  role: AppButtonRole.primary,
                   onPressed: _nextPage,
-                  text: _currentIndex == _pages.length - 1
+                  label: _currentIndex == _pages.length - 1
                       ? "Get Started"
                       : "Next",
                 ),

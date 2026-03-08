@@ -7,5 +7,8 @@ extension AppThemeExtension on BuildContext {
   BackgroundColorThemeExtension get backgroundColorTheme =>
       appTheme.backgroundColorTheme;
 
+  AppButtonThemeExtension get buttonTheme => appTheme.buttonThemeExtension;
+
+
 }
 

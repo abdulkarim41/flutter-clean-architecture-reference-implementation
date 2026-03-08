@@ -4,29 +4,35 @@ import 'package:designsystem/designsystem.dart';
 final class AppTheme extends ThemeExtension<AppTheme> {
 
   final BackgroundColorThemeExtension backgroundColorTheme;
+  final AppButtonThemeExtension buttonThemeExtension;
 
   const AppTheme._({
     required this.backgroundColorTheme,
+    required this.buttonThemeExtension,
   });
 
   @override
   ThemeExtension<AppTheme> copyWith({
     BackgroundColorThemeExtension? backgroundColorTheme,
+    AppButtonThemeExtension? buttonThemeExtension,
   }) {
     return AppTheme._(
       backgroundColorTheme: backgroundColorTheme ?? this.backgroundColorTheme,
+      buttonThemeExtension: buttonThemeExtension ?? this.buttonThemeExtension,
     );
   }
 
   factory AppTheme.light() {
     return AppTheme._(
       backgroundColorTheme: BackgroundColorThemeExtension.light(),
+      buttonThemeExtension: AppButtonThemeExtension.light(),
     );
   }
 
   factory AppTheme.dark() {
     return AppTheme._(
       backgroundColorTheme: BackgroundColorThemeExtension.dark(),
+      buttonThemeExtension: AppButtonThemeExtension.dark(),
     );
   }
 
