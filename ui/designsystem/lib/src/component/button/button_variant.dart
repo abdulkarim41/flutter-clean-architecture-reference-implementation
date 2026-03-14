@@ -1,4 +1,4 @@
-enum AppButtonVariant {
+enum ButtonVariant {
   filled,
   outline,
   text,

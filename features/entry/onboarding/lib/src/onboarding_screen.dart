@@ -54,6 +54,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       backgroundColor: context.backgroundColorTheme.backgroundPrimary,
       appBar: AppBar(
           actions:[_SkipButton(onSkip: cubit.navigateToNextScreen),],
+        actionsPadding: AppSpacing.all(SpaceToken.md),
       ),
       body: BlocListener<OnboardingCubit, OnboardingState>(
         listener: (context, state) {
@@ -91,8 +92,8 @@ class _SkipButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppButton.text(
       onPressed: onSkip,
-      label: AppString.actionSkip,
-      role: AppButtonRole.secondary,
+      text: Text(AppString.actionSkip),
+      colorRole: ButtonColorRole.secondary(),
     );
   }
 }

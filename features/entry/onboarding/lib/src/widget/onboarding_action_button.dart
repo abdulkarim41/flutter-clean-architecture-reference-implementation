@@ -1,7 +1,6 @@
 import 'package:designsystem/designsystem.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onboarding/src/bloc/onboarding_cubit.dart';
 
 class OnboardingActionButton extends StatelessWidget {
@@ -46,8 +45,8 @@ class _GetStartedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppButton.filled(
       onPressed: onPressed,
-      label: AppString.actionGetStarted,
-      role: AppButtonRole.primary,
+      colorRole: ButtonColorRole.brand(),
+      child: AppText(AppString.actionGetStarted),
     );
   }
 }
@@ -61,8 +60,8 @@ class _NextIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppButton.filled(
       onPressed: onPressed,
-      role: AppButtonRole.primary,
-      label: "Next",
+      colorRole: ButtonColorRole.brand(),
+      child: AppText("Next"),
     );
   }
 }

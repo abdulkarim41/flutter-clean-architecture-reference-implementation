@@ -5,83 +5,89 @@ final class AppButtonThemeExtension extends ThemeExtension<AppButtonThemeExtensi
 
   factory AppButtonThemeExtension.light() {
     return AppButtonThemeExtension(
-      primary: AppButtonColor(
-        background: const Color(0xFF0066FF),
-        foreground: Colors.white,
-        border: const Color(0xFF0066FF),
+      primary: ButtonColorSet(
+        filled: ButtonColor.filled(
+          background: AppColors.primary,
+          foreground: AppColors.white,
+          disableBackground: AppColors.primaryDark,
+          disableForeground: AppColors.white,
+        ),
+        outline: ButtonColor.outline(
+          border: AppColors.primary,
+          foreground: AppColors.primary,
+        ),
+        textAndIconOnly: ButtonColor.textAndIconOnly(
+          foreground: AppColors.primary,
+        ),
       ),
-      secondary: AppButtonColor(
-        background: Colors.grey.shade200,
-        foreground: Colors.black,
-        border: Colors.grey.shade300,
+      secondary: ButtonColorSet(
+        filled: ButtonColor.filled(
+          background: AppColors.secondary,
+          foreground: AppColors.white,
+        ),
+        outline: ButtonColor.outline(
+          border: AppColors.secondary,
+          foreground: AppColors.secondary,
+        ),
+        textAndIconOnly: ButtonColor.textAndIconOnly(
+          foreground: AppColors.secondary,
+        ),
       ),
-      tertiary: const AppButtonColor(
-        background: Colors.transparent,
-        foreground: Color(0xFF0066FF),
-        border: Colors.transparent,
-      ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 12,
-      ),
-      radius: BorderRadius.circular(12),
     );
   }
 
   factory AppButtonThemeExtension.dark() {
     return AppButtonThemeExtension(
-      primary: AppButtonColor(
-        background: Colors.blueGrey,
-        foreground: Colors.white,
-        border: Colors.blueGrey,
+      primary: ButtonColorSet(
+        filled: ButtonColor.filled(
+          background: AppColors.grey700,
+          foreground: AppColors.white,
+          disableBackground: AppColors.grey100,
+          disableForeground: AppColors.white,
+        ),
+        outline: ButtonColor.outline(
+          border: AppColors.grey700,
+          foreground: AppColors.grey700,
+          disableBorder: AppColors.grey100,
+        ),
+        textAndIconOnly: ButtonColor.textAndIconOnly(
+          foreground: AppColors.grey700,
+          disableForeground: AppColors.grey100,
+        ),
+
       ),
-      secondary: AppButtonColor(
-        background: AppColors.grey700,
-        foreground: Colors.white,
-        border: AppColors.grey700,
+      secondary: ButtonColorSet(
+        filled: ButtonColor.filled(
+          background: AppColors.secondary,
+          foreground: AppColors.white,
+        ),
+        outline: ButtonColor.outline(
+          border: AppColors.secondary,
+          foreground: AppColors.secondary,
+        ),
+        textAndIconOnly: ButtonColor.textAndIconOnly(
+          foreground: AppColors.secondary,
+        ),
       ),
-      tertiary: const AppButtonColor(
-        background: Colors.transparent,
-        foreground: Colors.white,
-        border: Colors.transparent,
-      ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 12,
-      ),
-      radius: BorderRadius.circular(12),
     );
   }
 
-  final AppButtonColor primary;
-  final AppButtonColor secondary;
-  final AppButtonColor tertiary;
-
-  final EdgeInsets padding;
-  final BorderRadius radius;
+  final ButtonColorSet primary;
+  final ButtonColorSet secondary;
 
   const AppButtonThemeExtension({
     required this.primary,
     required this.secondary,
-    required this.tertiary,
-    required this.padding,
-    required this.radius,
   });
 
   @override
   AppButtonThemeExtension copyWith({
-    AppButtonColor? primary,
-    AppButtonColor? secondary,
-    AppButtonColor? tertiary,
-    EdgeInsets? padding,
-    BorderRadius? radius,
+    ButtonColorSet? primary,
+    ButtonColorSet? secondary,
   }) {
     return AppButtonThemeExtension(
       primary: primary ?? this.primary,
       secondary: secondary ?? this.secondary,
-      tertiary: tertiary ?? this.tertiary,
-      padding: padding ?? this.padding,
-      radius: radius ?? this.radius,
     );
   }
 
