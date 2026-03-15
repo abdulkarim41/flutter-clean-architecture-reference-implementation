@@ -28,7 +28,11 @@ class OnboardingActionButton extends StatelessWidget {
                 child: SizeTransition(sizeFactor: animation, axis: Axis.horizontal, child: child),
               );
             },
-            child: isLastPage ? _GetStartedButton(key: const ValueKey('start_btn'), onPressed: () => onTap(state.currentPageIndex, state.totalItemCount)) : _NextIconButton(key: const ValueKey('next_btn'), onPressed: () => onTap(state.currentPageIndex, state.totalItemCount)),
+            child: isLastPage ?
+            _GetStartedButton(key: const ValueKey('start_btn'),
+                onPressed: () => onTap(state.currentPageIndex, state.totalItemCount))
+                : _NextIconButton(key: const ValueKey('next_btn'),
+                onPressed: () => onTap(state.currentPageIndex, state.totalItemCount)),
           ),
         );
       },
@@ -46,7 +50,8 @@ class _GetStartedButton extends StatelessWidget {
     return AppButton.filled(
       onPressed: onPressed,
       colorRole: ButtonColorRole.brand(),
-      child: AppText(AppString.actionGetStarted),
+      width: double.maxFinite,
+      child: AppText(AppString.actionGetStarted, colorRole: AppTextColorRole.white),
     );
   }
 }
@@ -61,7 +66,8 @@ class _NextIconButton extends StatelessWidget {
     return AppButton.filled(
       onPressed: onPressed,
       colorRole: ButtonColorRole.brand(),
-      child: AppText("Next"),
+      padding: AppSpacing.horizontal(SpaceToken.xl),
+      child: AppText(AppString.actionNext, colorRole: AppTextColorRole.white),
     );
   }
 }

@@ -3,6 +3,7 @@ final class AppString {
 
   static const String actionGetStarted = "Get started";
   static const String actionSkip = "Skip";
+  static const String actionNext = "Next";
 
   static const String titleOnboardingSlider1 = "Welcome";
   static const String titleOnboardingSlider2 = "Fast & Secure";

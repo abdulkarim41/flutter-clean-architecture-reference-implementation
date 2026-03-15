@@ -24,7 +24,7 @@ class PageIndicators extends StatelessWidget {
               margin: AppSpacing.horizontal(SpaceToken.xs),
               width: isActive ? 44 : 4,
               height: 4,
-              decoration: AppRadii.boxDecoration(radius: RadiusToken.sm, color: isActive ? surfaceColors.backgroundPrimary : surfaceColors.backgroundSecondary),
+              decoration: AppRadii.boxDecoration(radius: RadiusToken.sm, color: isActive ? AppColors.primary : AppColors.primaryDark),
             );
           }),
         );
