@@ -30,7 +30,7 @@ class _MyApplicationState extends State<MyApplication> {
       postLoginApiUsecase: GetIt.I.get<PostLoginApiUsecase>(),
       sharedPrefs: GetIt.I.get<SharedPrefs>(),
     );
-    _router = AppRouter.router(_authBloc);
+    _router = AppRouter().router();
   }
 
   @override

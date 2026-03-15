@@ -4,7 +4,7 @@ import 'package:products/src/products_screen.dart';
 
 class ProductsRouter implements BaseRouter {
   @override
-  List<GoRoute> get routes => [
+  List<RouteBase> get routes => [
     GoRoute(
       path: AppRoutesPath.productScreenPath,
       name: AppRoutesName.productScreenName,
